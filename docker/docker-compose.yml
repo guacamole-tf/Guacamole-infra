@@ -1,0 +1,26 @@
+version: '3'
+services:
+  jenkins:
+    image: guacamoletf/guacamole-jenkins
+    container_name: "jenkins-server"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+#      - type: bind
+#        source: /var/run/docker.sock
+#        target: /var/run/docker.sock
+#        read_only: true
+#      - type: volume
+#        source: jenkins_home
+#        target: /var/jenkins_home
+#        read_only: true
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    restart: always
+    privileged: true
+    user: root 
+
+volumes:
+  jenkins_home:
+
